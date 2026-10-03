@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tour Packages — Meridian Travel</title>
+<meta name="description" content="Honeymoon, family, adventure, solo, beach, and luxury tour packages from Meridian Travel.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<style>
+/* ============================================================
+   MERIDIAN TRAVEL — Core Stylesheet
+   Design tokens: Navy/Teal/Coral on warm sand
+   Display: Montserrat | Body: Poppins
+   ============================================================ */
+
+:root{
+  --navy-deep:#0A2A47;
+  --navy:#123B63;
+  --navy-light:#1C5384;
+  --teal:#0E7C86;
+  --coral:#FF6B45;
+  --coral-dark:#E8562F;
+  --gold:#F0A857;
+  --sand:#FBF6EE;
+  --sand-deep:#F2E9D8;
+  --ink:#0E2135;
+  --gray:#5D6B7A;
+  --gray-light:#93A1AF;
+  --white:#FFFFFF;
+  --line:rgba(10,42,71,0.10);
+
+  --font-display:'Montserrat', sans-serif;
+  --font-body:'Poppins', sans-serif;
+
+  --radius-sm:10px;
+  --radius-md:18px;
+  --radius-lg:28px;
+
+  --shadow-soft:0 10px 40px rgba(10,42,71,0.10);
+  --shadow-card:0 18px 50px rgba(10,42,71,0.14);
+  --shadow-hover:0 26px 60px rgba(10,42,71,0.22);
+
+  --transition:0.35s cubic-bezier(.25,.8,.25,1);
+}
+
+[data-theme="dark"]{
+  --sand:#0A1826;
+  --sand-deep:#0F2236;
+  --ink:#EAF1F7;
+  --white:#122438;
+  --gray:#AEBBC8;
+  --gray-light:#7C8B9B;
+  --line:rgba(255,255,255,0.08);
+  --navy-deep:#071B2E;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:var(--sand);
+  overflow-x:hidden;
+  transition:background var(--transition), color var(--transition);
+}
+h1,h2,h3,h4,h5,.font-display{
+  font-family:var(--font-display);
+  color:var(--ink);
+  font-weight:800;
+  letter-spacing:-0.02em;
+}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+::selection{background:var(--coral);color:#fff;}
+
+.container-xl-custom{
+  max-width:1320px;
+  margin:0 auto;
+  padding:0 24px;
+}
+
+/* ---------- Eyebrow / coordinate labels (signature motif) ---------- */
+.coord-label{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family:var(--font-body);
+  font-size:12.5px;
+  font-weight:600;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--coral);
+  margin-bottom:14px;
+}
+.coord-label::before{
+  content:"";
+  width:26px;
+  height:1px;
+  background:var(--coral);
+  display:inline-block;
+}
+.section-title{
+  font-size:clamp(2rem,3.4vw,3rem);
+  margin-bottom:14px;
+}
+.section-sub{
+  color:var(--gray);
+  font-size:1.05rem;
+  max-width:620px;
+  line-height:1.7;
+}
+.section-pad{padding:100px 0;}
+@media(max-width:768px){.section-pad{padding:64px 0;}}
+
+/* ---------- Buttons ---------- */
+.btn-coral{
+  background:var(--coral);
+  color:#fff;
+  border:none;
+  padding:14px 32px;
+  border-radius:50px;
+  font-weight:600;
+  font-size:0.95rem;
+  letter-spacing:0.02em;
+  transition:all var(--transition);
+  box-shadow:0 12px 30px rgba(255,107,69,0.35);
+}
+.btn-coral:hover{
+  background:var(--coral-dark);
+  color:#fff;
+  transform:translateY(-3px);
+  box-shadow:0 18px 36px rgba(255,107,69,0.45);
+}
+.btn-outline-navy{
+  background:transparent;
+  border:1.5px solid var(--line);
+  color:var(--ink);
+  padding:13px 30px;
+  border-radius:50px;
+  font-weight:600;
+  font-size:0.95rem;
+  transition:all var(--transition);
+}
+.btn-outline-navy:hover{
+  border-color:var(--navy);
+  background:var(--navy);
+  color:#fff;
+}
+.btn-ghost-white{
+  background:rgba(255,255,255,0.12);
+  border:1.5px solid rgba(255,255,255,0.5);
+  color:#fff;
+  padding:13px 30px;
+  border-radius:50px;
+  font-weight:600;
+  backdrop-filter:blur(6px);
+  transition:all var(--transition);
+}
+.btn-ghost-white:hover{
+  background:#fff;
+  color:var(--navy-deep);
+}
+
+/* ---------- Navbar ---------- */
+.navbar-meridian{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:1000;
+  padding:22px 0;
+  transition:all var(--transition);
+  background:transparent;
+}
+.navbar-meridian.scrolled{
+  padding:12px 0;
+  background:var(--sand);
+  box-shadow:0 4px 30px rgba(10,42,71,0.08);
+}
+.navbar-meridian .container-xl-custom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.brand-mark{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:1.4rem;
+  color:var(--white);
+  transition:color var(--transition);
+}
+.navbar-meridian.scrolled .brand-mark,
+.navbar-meridian.solid .brand-mark{color:var(--ink);}
+.brand-mark .dot{color:var(--coral);}
+.brand-icon{
+  width:38px;height:38px;
+  border-radius:50%;
+  background:var(--coral);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:16px;
+  flex-shrink:0;
+}
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:36px;
+  list-style:none;
+  margin:0;padding:0;
+}
+.nav-links a{
+  font-weight:500;
+  font-size:0.94rem;
+  color:rgba(255,255,255,0.92);
+  position:relative;
+  padding:6px 0;
+  transition:color var(--transition);
+}
+.navbar-meridian.scrolled .nav-links a,
+.navbar-meridian.solid .nav-links a{color:var(--ink);}
+.nav-links a::after{
+  content:"";
+  position:absolute;left:0;bottom:0;
+  width:0;height:2px;
+  background:var(--coral);
+  transition:width var(--transition);
+}
+.nav-links a:hover::after,
+.nav-links a.active::after{width:100%;}
+.nav-links a.active{color:var(--coral) !important;}
+
+.nav-actions{display:flex;align-items:center;gap:14px;}
+.theme-toggle{
+  width:40px;height:40px;
+  border-radius:50%;
+  border:1.5px solid rgba(255,255,255,0.4);
+  background:rgba(255,255,255,0.1);
+  color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  transition:all var(--transition);
+}
+.navbar-meridian.scrolled .theme-toggle,
+.navbar-meridian.solid .theme-toggle{
+  border-color:var(--line);
+  color:var(--ink);
+  background:var(--sand-deep);
+}
+.theme-toggle:hover{background:var(--coral);color:#fff;border-color:var(--coral);}
+
+.nav-toggle-btn{
+  display:none;
+  width:44px;height:44px;
+  border-radius:50%;
+  border:1.5px solid rgba(255,255,255,0.4);
+  background:rgba(255,255,255,0.1);
+  color:#fff;
+  align-items:center;justify-content:center;
+  cursor:pointer;
+}
+.navbar-meridian.scrolled .nav-toggle-btn,
+.navbar-meridian.solid .nav-toggle-btn{color:var(--ink);border-color:var(--line);}
+
+@media(max-width:991px){
+  .nav-toggle-btn{display:flex;}
+  .nav-links{
+    position:fixed;
+    top:0;right:-100%;
+    height:100vh;
+    width:78%;
+    max-width:340px;
+    background:var(--navy-deep);
+    flex-direction:column;
+    justify-content:center;
+    gap:26px;
+    transition:right 0.4s cubic-bezier(.25,.8,.25,1);
+    z-index:1001;
+    padding:40px;
+  }
+  .nav-links.open{right:0;}
+  .nav-links a{color:#fff !important;font-size:1.1rem;}
+  .nav-overlay{
+    position:fixed;inset:0;
+    background:rgba(0,0,0,0.5);
+    z-index:1000;
+    opacity:0;pointer-events:none;
+    transition:opacity 0.4s;
+  }
+  .nav-overlay.open{opacity:1;pointer-events:all;}
+  .nav-close{
+    position:absolute;top:24px;right:24px;
+    color:#fff;font-size:1.6rem;
+    cursor:pointer;
+    display:none;
+  }
+  .nav-links.open .nav-close{display:block;}
+}
+
+/* ---------- Hero ---------- */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  background:linear-gradient(180deg, rgba(10,26,45,0.55), rgba(10,26,45,0.75)),
+    url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+}
+.hero::after{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(10,42,71,0.2) 0%, rgba(10,26,45,0.85) 100%);
+}
+.hero-content{position:relative;z-index:2;color:#fff;padding-top:80px;}
+.hero .coord-label{color:var(--gold);}
+.hero .coord-label::before{background:var(--gold);}
+.hero h1{
+  font-size:clamp(2.4rem,6vw,4.6rem);
+  color:#fff;
+  line-height:1.05;
+  margin-bottom:22px;
+}
+.hero h1 em{
+  font-style:normal;
+  color:var(--coral);
+}
+.hero p.lead-text{
+  color:rgba(255,255,255,0.85);
+  font-size:1.15rem;
+  max-width:560px;
+  line-height:1.7;
+  margin-bottom:34px;
+}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
+.hero-flightpath{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  opacity:0.5;
+  pointer-events:none;
+}
+.scroll-cue{
+  position:absolute;bottom:150px;left:50%;
+  transform:translateX(-50%);
+  z-index:2;
+  color:rgba(255,255,255,0.75);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;
+  animation:bob 2.2s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,10px);}}
+
+/* ---------- Search card ---------- */
+.search-card-wrap{
+  position:relative;
+  z-index:5;
+  margin-top:-64px;
+}
+.search-card{
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.6);
+  border-radius:var(--radius-lg);
+  padding:34px;
+  box-shadow:var(--shadow-card);
+}
+[data-theme="dark"] .search-card{background:rgba(18,36,56,0.85);border-color:rgba(255,255,255,0.08);}
+.search-field label{
+  font-size:0.75rem;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  color:var(--gray);
+  margin-bottom:8px;
+  display:block;
+}
+.search-field .form-control,
+.search-field .form-select{
+  border:none;
+  background:var(--sand-deep);
+  border-radius:12px;
+  padding:12px 16px;
+  font-weight:500;
+  color:var(--ink);
+}
+.search-field .form-control:focus,
+.search-field .form-select:focus{
+  box-shadow:0 0 0 3px rgba(255,107,69,0.2);
+}
+.search-submit-btn{
+  width:100%;height:100%;
+  min-height:50px;
+  background:var(--coral);
+  color:#fff;border:none;border-radius:12px;
+  font-weight:600;
+  transition:all var(--transition);
+}
+.search-submit-btn:hover{background:var(--coral-dark);}
+
+/* ---------- Cards: Destinations ---------- */
+.dest-card{
+  position:relative;
+  border-radius:var(--radius-md);
+  overflow:hidden;
+  height:420px;
+  box-shadow:var(--shadow-card);
+  transition:transform var(--transition), box-shadow var(--transition);
+}
+.dest-card:hover{transform:translateY(-10px);box-shadow:var(--shadow-hover);}
+.dest-card img{
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:transform 0.7s ease;
+}
+.dest-card:hover img{transform:scale(1.09);}
+.dest-card-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(10,26,45,0) 30%, rgba(10,26,45,0.92) 100%);
+}
+.dest-card-body{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:26px;color:#fff;
+}
+.dest-card-price{
+  position:absolute;top:18px;right:18px;
+  background:rgba(255,255,255,0.92);
+  color:var(--navy-deep);
+  padding:6px 14px;
+  border-radius:50px;
+  font-weight:700;
+  font-size:0.85rem;
+}
+.dest-card-coord{
+  font-size:0.72rem;
+  letter-spacing:0.08em;
+  color:var(--gold);
+  font-weight:600;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+.dest-card-body h4{color:#fff;font-size:1.3rem;margin-bottom:6px;}
+.dest-card-body p{color:rgba(255,255,255,0.78);font-size:0.9rem;margin-bottom:14px;}
+.dest-card .explore-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  color:#fff;font-weight:600;font-size:0.88rem;
+  border-bottom:1.5px solid var(--coral);
+  padding-bottom:2px;
+  transition:gap var(--transition);
+}
+.dest-card .explore-btn:hover{gap:12px;color:var(--coral);}
+
+.filter-pills{
+  display:flex;flex-wrap:wrap;gap:10px;
+  margin-bottom:44px;
+}
+.filter-pill{
+  padding:9px 22px;
+  border-radius:50px;
+  border:1.5px solid var(--line);
+  background:var(--white);
+  font-weight:600;font-size:0.87rem;
+  cursor:pointer;
+  transition:all var(--transition);
+}
+.filter-pill:hover{border-color:var(--coral);color:var(--coral);}
+.filter-pill.active{background:var(--coral);border-color:var(--coral);color:#fff;}
+
+/* ---------- Package cards ---------- */
+.package-card{
+  background:var(--white);
+  border-radius:var(--radius-md);
+  overflow:hidden;
+  box-shadow:var(--shadow-card);
+  transition:transform var(--transition), box-shadow var(--transition);
+  height:100%;
+  border:1px solid var(--line);
+}
+.package-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-hover);}
+.package-img-wrap{position:relative;height:230px;overflow:hidden;}
+.package-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease;}
+.package-card:hover .package-img-wrap img{transform:scale(1.08);}
+.package-tag{
+  position:absolute;top:16px;left:16px;
+  background:var(--coral);color:#fff;
+  padding:6px 14px;border-radius:50px;
+  font-size:0.75rem;font-weight:700;
+  letter-spacing:0.04em;text-transform:uppercase;
+}
+.package-duration{
+  position:absolute;bottom:16px;right:16px;
+  background:rgba(10,26,45,0.7);
+  color:#fff;backdrop-filter:blur(6px);
+  padding:6px 14px;border-radius:50px;
+  font-size:0.78rem;font-weight:600;
+}
+.package-body{padding:26px;}
+.package-rating{color:var(--gold);font-size:0.85rem;margin-bottom:10px;}
+.package-rating span{color:var(--gray);font-weight:500;margin-left:4px;}
+.package-body h4{font-size:1.25rem;margin-bottom:10px;}
+.package-includes{
+  display:flex;flex-wrap:wrap;gap:8px;
+  margin:16px 0 20px;
+  list-style:none;padding:0;
+}
+.package-includes li{
+  font-size:0.78rem;
+  background:var(--sand-deep);
+  color:var(--gray);
+  padding:5px 12px;
+  border-radius:50px;
+  display:flex;align-items:center;gap:5px;
+}
+.package-includes li i{color:var(--teal);}
+.package-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:18px;border-top:1px solid var(--line);
+}
+.package-price{font-family:var(--font-display);font-weight:800;font-size:1.4rem;color:var(--navy-deep);}
+[data-theme="dark"] .package-price{color:#fff;}
+.package-price small{font-size:0.7rem;color:var(--gray);font-weight:500;}
+
+/* ---------- Why choose us ---------- */
+.feature-item{
+  padding:32px 26px;
+  border-radius:var(--radius-md);
+  background:var(--white);
+  border:1px solid var(--line);
+  height:100%;
+  transition:all var(--transition);
+}
+.feature-item:hover{
+  border-color:var(--coral);
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-card);
+}
+.feature-icon{
+  width:60px;height:60px;
+  border-radius:16px;
+  background:linear-gradient(135deg, var(--navy), var(--teal));
+  color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;
+  margin-bottom:20px;
+}
+.feature-item h5{margin-bottom:10px;font-size:1.1rem;}
+.feature-item p{color:var(--gray);font-size:0.92rem;line-height:1.7;margin:0;}
+
+/* ---------- Testimonials ---------- */
+.section-dark{
+  background:var(--navy-deep);
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+}
+.section-dark .section-sub{color:rgba(255,255,255,0.65);}
+.section-dark .coord-label{color:var(--gold);}
+.section-dark .coord-label::before{background:var(--gold);}
+.section-dark h2{color:#fff;}
+.testimonial-card{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:var(--radius-md);
+  padding:32px;
+  height:100%;
+  backdrop-filter:blur(10px);
+}
+.testimonial-card .stars{color:var(--gold);margin-bottom:16px;font-size:0.9rem;}
+.testimonial-card p{color:rgba(255,255,255,0.85);line-height:1.75;font-size:0.98rem;margin-bottom:22px;}
+.testimonial-author{display:flex;align-items:center;gap:14px;}
+.testimonial-author img{width:48px;height:48px;border-radius:50%;object-fit:cover;}
+.testimonial-author h6{color:#fff;margin:0;font-size:0.95rem;}
+.testimonial-author span{color:rgba(255,255,255,0.55);font-size:0.8rem;}
+
+/* ---------- CTA ---------- */
+.cta-section{
+  background:linear-gradient(120deg, var(--navy-deep), var(--teal));
+  border-radius:var(--radius-lg);
+  padding:70px 50px;
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+}
+.cta-section h2{color:#fff;margin-bottom:16px;}
+.cta-section p{color:rgba(255,255,255,0.8);margin-bottom:0;}
+@media(max-width:768px){.cta-section{padding:50px 26px;text-align:center;}}
+
+/* ---------- Stats counter ---------- */
+.stat-box{text-align:center;}
+.stat-num{
+  font-family:var(--font-display);
+  font-size:clamp(2.2rem,4vw,3.4rem);
+  font-weight:800;
+  color:var(--coral);
+  line-height:1;
+}
+.stat-label{
+  color:var(--gray);
+  font-size:0.88rem;
+  margin-top:10px;
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  font-weight:600;
+}
+.section-dark .stat-label{color:rgba(255,255,255,0.65);}
+
+/* ---------- Footer ---------- */
+.footer{
+  background:var(--navy-deep);
+  color:rgba(255,255,255,0.7);
+  padding:80px 0 0;
+}
+.footer h6{
+  color:#fff;font-family:var(--font-display);
+  font-size:1rem;margin-bottom:22px;letter-spacing:0.02em;
+}
+.footer .brand-mark{color:#fff;margin-bottom:16px;}
+.footer p{font-size:0.92rem;line-height:1.8;color:rgba(255,255,255,0.55);}
+.footer-links{list-style:none;padding:0;margin:0;}
+.footer-links li{margin-bottom:12px;}
+.footer-links a{
+  color:rgba(255,255,255,0.65);
+  font-size:0.92rem;
+  transition:color var(--transition), padding-left var(--transition);
+}
+.footer-links a:hover{color:var(--coral);padding-left:6px;}
+.footer-contact li{
+  display:flex;gap:12px;margin-bottom:16px;
+  font-size:0.9rem;color:rgba(255,255,255,0.65);
+}
+.footer-contact i{color:var(--coral);margin-top:3px;}
+.social-icons{display:flex;gap:12px;margin-top:20px;}
+.social-icons a{
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,0.08);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;transition:all var(--transition);
+}
+.social-icons a:hover{background:var(--coral);transform:translateY(-3px);}
+.newsletter-form{display:flex;gap:0;margin-top:8px;border-radius:50px;overflow:hidden;background:rgba(255,255,255,0.08);padding:4px;}
+.newsletter-form input{
+  flex:1;background:transparent;border:none;
+  padding:10px 18px;color:#fff;font-size:0.9rem;
+}
+.newsletter-form input::placeholder{color:rgba(255,255,255,0.5);}
+.newsletter-form input:focus{outline:none;}
+.newsletter-form button{
+  background:var(--coral);color:#fff;border:none;
+  padding:10px 20px;border-radius:50px;font-weight:600;
+  transition:background var(--transition);
+}
+.newsletter-form button:hover{background:var(--coral-dark);}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,0.1);
+  margin-top:60px;
+  padding:26px 0;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:12px;
+  font-size:0.85rem;
+  color:rgba(255,255,255,0.5);
+}
+.footer-bottom a{color:rgba(255,255,255,0.6);}
+.footer-bottom a:hover{color:var(--coral);}
+
+/* ---------- Scroll to top ---------- */
+.scroll-top-btn{
+  position:fixed;
+  bottom:28px;right:28px;
+  width:48px;height:48px;
+  border-radius:50%;
+  background:var(--coral);
+  color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  border:none;
+  cursor:pointer;
+  opacity:0;visibility:hidden;
+  transform:translateY(10px);
+  transition:all var(--transition);
+  z-index:999;
+  box-shadow:0 10px 26px rgba(255,107,69,0.4);
+}
+.scroll-top-btn.show{opacity:1;visibility:visible;transform:translateY(0);}
+.scroll-top-btn:hover{background:var(--coral-dark);}
+
+/* ---------- Page loader ---------- */
+.page-loader{
+  position:fixed;inset:0;
+  background:var(--navy-deep);
+  z-index:9999;
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity 0.6s ease, visibility 0.6s ease;
+}
+.page-loader.hide{opacity:0;visibility:hidden;}
+.loader-plane{
+  font-size:2.2rem;color:var(--coral);
+  animation:fly 1.4s ease-in-out infinite;
+}
+@keyframes fly{
+  0%{transform:translate(-30px,10px) rotate(-8deg);opacity:0.5;}
+  50%{transform:translate(0,-10px) rotate(4deg);opacity:1;}
+  100%{transform:translate(30px,10px) rotate(-8deg);opacity:0.5;}
+}
+
+/* ---------- Page header (inner pages) ---------- */
+.page-header{
+  position:relative;
+  padding:180px 0 100px;
+  background:linear-gradient(180deg, rgba(10,26,45,0.6), rgba(10,26,45,0.85)),
+    url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=2069&auto=format&fit=crop') center/cover;
+  color:#fff;
+}
+.page-header .coord-label{color:var(--gold);}
+.page-header .coord-label::before{background:var(--gold);}
+.page-header h1{color:#fff;font-size:clamp(2.2rem,4.5vw,3.4rem);margin-bottom:14px;}
+.breadcrumb-custom{color:rgba(255,255,255,0.7);font-size:0.9rem;}
+.breadcrumb-custom a{color:rgba(255,255,255,0.9);font-weight:600;}
+.breadcrumb-custom .fa-chevron-right{font-size:0.65rem;margin:0 8px;}
+
+/* ---------- Generic sections shared across pages ---------- */
+.info-card{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:var(--radius-md);
+  padding:34px;
+  height:100%;
+  transition:all var(--transition);
+}
+.info-card:hover{box-shadow:var(--shadow-card);transform:translateY(-6px);}
+
+.team-card{text-align:center;}
+.team-photo{
+  border-radius:var(--radius-md);
+  overflow:hidden;
+  margin-bottom:20px;
+  position:relative;
+  height:320px;
+}
+.team-photo img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease;}
+.team-card:hover .team-photo img{transform:scale(1.06);}
+.team-social{
+  position:absolute;bottom:0;left:0;right:0;
+  display:flex;justify-content:center;gap:10px;
+  padding:16px;
+  background:linear-gradient(180deg, transparent, rgba(10,26,45,0.85));
+  opacity:0;transform:translateY(10px);
+  transition:all var(--transition);
+}
+.team-card:hover .team-social{opacity:1;transform:translateY(0);}
+.team-social a{
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(255,255,255,0.15);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(6px);
+}
+.team-social a:hover{background:var(--coral);}
+.team-card h5{margin-bottom:4px;}
+.team-card span{color:var(--coral);font-size:0.85rem;font-weight:600;}
+
+.timeline-item{
+  display:flex;gap:24px;
+  padding-bottom:40px;
+  position:relative;
+}
+.timeline-item::before{
+  content:"";
+  position:absolute;left:23px;top:50px;bottom:0;
+  width:1px;background:var(--line);
+}
+.timeline-item:last-child::before{display:none;}
+.timeline-year{
+  width:48px;height:48px;flex-shrink:0;
+  border-radius:50%;
+  background:var(--navy-deep);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.72rem;font-weight:700;
+}
+.timeline-content h5{margin-bottom:8px;}
+.timeline-content p{color:var(--gray);margin:0;font-size:0.92rem;line-height:1.7;}
+
+.award-card{
+  text-align:center;padding:34px 20px;
+  border-radius:var(--radius-md);
+  border:1px solid var(--line);
+  background:var(--white);
+}
+.award-card i{font-size:2.2rem;color:var(--gold);margin-bottom:16px;}
+.award-card h6{margin-bottom:6px;}
+.award-card p{color:var(--gray);font-size:0.85rem;margin:0;}
+
+.logo-strip{
+  display:flex;flex-wrap:wrap;
+  align-items:center;justify-content:space-between;
+  gap:30px;
+  padding:36px 0;
+}
+.logo-strip img{height:28px;opacity:0.5;filter:grayscale(1);transition:all var(--transition);}
+.logo-strip img:hover{opacity:1;filter:grayscale(0);}
+
+/* ---------- Blog / Gallery ---------- */
+.blog-card{
+  background:var(--white);
+  border-radius:var(--radius-md);
+  overflow:hidden;
+  border:1px solid var(--line);
+  transition:all var(--transition);
+  height:100%;
+}
+.blog-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-card);}
+.blog-img{height:220px;overflow:hidden;}
+.blog-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease;}
+.blog-card:hover .blog-img img{transform:scale(1.08);}
+.blog-body{padding:24px;}
+.blog-meta{font-size:0.78rem;color:var(--gray);margin-bottom:10px;display:flex;gap:14px;}
+.blog-meta i{color:var(--coral);margin-right:4px;}
+.blog-body h5{font-size:1.05rem;line-height:1.4;margin-bottom:10px;}
+.blog-body p{color:var(--gray);font-size:0.88rem;line-height:1.6;margin-bottom:14px;}
+.blog-read{color:var(--coral);font-weight:600;font-size:0.85rem;}
+
+.gallery-item{
+  border-radius:var(--radius-sm);
+  overflow:hidden;
+  position:relative;
+  height:220px;
+  cursor:pointer;
+}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease;}
+.gallery-item:hover img{transform:scale(1.12);}
+.gallery-item .g-overlay{
+  position:absolute;inset:0;
+  background:rgba(10,26,45,0.55);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity var(--transition);
+  color:#fff;font-size:1.4rem;
+}
+.gallery-item:hover .g-overlay{opacity:1;}
+
+/* ---------- FAQ Accordion ---------- */
+.accordion-meridian .accordion-item{
+  border:1px solid var(--line);
+  background:var(--white);
+  border-radius:var(--radius-sm) !important;
+  margin-bottom:14px;
+  overflow:hidden;
+}
+.accordion-meridian .accordion-button{
+  font-weight:600;
+  font-family:var(--font-display);
+  font-size:0.98rem;
+  color:var(--ink);
+  background:var(--white);
+  padding:20px 24px;
+}
+.accordion-meridian .accordion-button:not(.collapsed){
+  color:var(--coral);
+  background:var(--sand-deep);
+  box-shadow:none;
+}
+.accordion-meridian .accordion-button:focus{box-shadow:none;border-color:var(--line);}
+.accordion-meridian .accordion-button::after{
+  filter:hue-rotate(0deg);
+}
+.accordion-meridian .accordion-body{
+  padding:4px 24px 22px;
+  color:var(--gray);
+  font-size:0.92rem;
+  line-height:1.75;
+}
+
+/* ---------- Contact page ---------- */
+.contact-form-card{
+  background:var(--white);
+  border-radius:var(--radius-lg);
+  padding:44px;
+  box-shadow:var(--shadow-card);
+  border:1px solid var(--line);
+}
+.form-control-meridian{
+  background:var(--sand-deep);
+  border:1.5px solid transparent;
+  border-radius:12px;
+  padding:13px 18px;
+  font-size:0.94rem;
+  color:var(--ink);
+  width:100%;
+  transition:all var(--transition);
+}
+.form-control-meridian:focus{
+  outline:none;
+  border-color:var(--coral);
+  background:var(--white);
+}
+.form-control-meridian.is-invalid{border-color:#e74c3c;}
+.form-label-meridian{
+  font-size:0.82rem;font-weight:600;
+  color:var(--gray);margin-bottom:8px;display:block;
+}
+.invalid-feedback-meridian{
+  color:#e74c3c;font-size:0.78rem;margin-top:6px;display:none;
+}
+.form-control-meridian.is-invalid ~ .invalid-feedback-meridian,
+.is-invalid + .invalid-feedback-meridian{display:block;}
+.contact-info-item{
+  display:flex;gap:18px;
+  padding:26px 0;
+  border-bottom:1px solid var(--line);
+}
+.contact-info-item:last-child{border-bottom:none;}
+.contact-info-icon{
+  width:52px;height:52px;flex-shrink:0;
+  border-radius:14px;
+  background:linear-gradient(135deg, var(--navy), var(--teal));
+  color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.15rem;
+}
+.contact-info-item h6{margin-bottom:6px;}
+.contact-info-item p{color:var(--gray);margin:0;font-size:0.9rem;}
+.map-wrap{
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  height:420px;
+  border:1px solid var(--line);
+}
+.map-wrap iframe{width:100%;height:100%;border:0;filter:grayscale(0.3) contrast(1.05);}
+[data-theme="dark"] .map-wrap iframe{filter:grayscale(0.5) invert(0.9) contrast(0.9);}
+
+.form-alert-success{
+  display:none;
+  background:rgba(14,124,134,0.12);
+  border:1px solid var(--teal);
+  color:var(--teal);
+  padding:14px 20px;
+  border-radius:12px;
+  font-size:0.9rem;
+  margin-bottom:20px;
+  align-items:center;gap:10px;
+}
+.form-alert-success.show{display:flex;}
+
+/* ---------- AOS fallback reveal ---------- */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease, transform 0.7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* ---------- Utilities ---------- */
+.text-coral{color:var(--coral) !important;}
+.text-gray{color:var(--gray) !important;}
+.bg-sand-deep{background:var(--sand-deep) !important;}
+.rounded-xl{border-radius:var(--radius-lg) !important;}
+
+@media(max-width:576px){
+  .search-card{padding:22px;}
+  .hero-btns{flex-direction:column;align-items:stretch;}
+}
+
+</style>
+</head>
+<body>
+
+<div class="page-loader"><i class="fa-solid fa-plane-departure loader-plane"></i></div>
+
+<nav class="navbar-meridian solid">
+  <div class="container-xl-custom">
+    <a href="index.html" class="brand-mark"><span class="brand-icon"><i class="fa-solid fa-compass"></i></span>Meridian<span class="dot">.</span></a>
+    <ul class="nav-links">
+      <span class="nav-close"><i class="fa-solid fa-xmark"></i></span>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="destinations.html">Destinations</a></li>
+      <li><a href="packages.html">Packages</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+      <a href="contact.html" class="btn-coral d-none d-lg-inline-block">Plan My Trip</a>
+      <button class="nav-toggle-btn" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-overlay"></div>
+
+<header class="page-header">
+  <div class="container-xl-custom">
+    <span class="coord-label">Tour Packages</span>
+    <h1>Six ways to travel,<br>all fully planned</h1>
+    <div class="breadcrumb-custom"><a href="index.html">Home</a><i class="fa-solid fa-chevron-right"></i><span>Packages</span></div>
+  </div>
+</header>
+
+<section class="section-pad">
+  <div class="container-xl-custom">
+
+    <div class="filter-pills">
+      <button class="filter-pill active" data-filter="all">All Packages</button>
+      <button class="filter-pill" data-filter="honeymoon">Honeymoon</button>
+      <button class="filter-pill" data-filter="family">Family</button>
+      <button class="filter-pill" data-filter="adventure">Adventure</button>
+      <button class="filter-pill" data-filter="solo">Solo Trip</button>
+      <button class="filter-pill" data-filter="beach">Beach Holiday</button>
+      <button class="filter-pill" data-filter="luxury">Luxury Tour</button>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- Honeymoon -->
+      <div class="col-lg-6 reveal" data-category="honeymoon">
+        <div class="package-card">
+          <div class="package-img-wrap" style="height:280px;">
+            <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1974&auto=format&fit=crop" alt="Honeymoon Package">
+            <span class="package-tag">Honeymoon</span>
+            <span class="package-duration"><i class="fa-regular fa-clock me-1"></i>6 Days / 5 Nights</span>
+          </div>
+          <div class="package-body">
+            <div class="package-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><span>4.9 (212 reviews)</span></div>
+            <h4>Maldives Private Villa Escape</h4>
+            <p class="text-gray" style="font-size:0.9rem;">Overwater villa, private plunge pool, and sunset catamaran cruise for two.</p>
+            <ul class="package-includes">
+              <li><i class="fa-solid fa-check"></i>Flights</li>
+              <li><i class="fa-solid fa-check"></i>Villa Stay</li>
+              <li><i class="fa-solid fa-check"></i>All Meals</li>
+              <li><i class="fa-solid fa-check"></i>Spa Session</li>
+              <li><i class="fa-solid fa-check"></i>Private Transfers</li>
+            </ul>
+            <div class="package-footer">
+              <div class="package-price">$2,450 <small>/ couple</small></div>
+              <button class="btn-coral book-now-btn" style="padding:10px 24px;font-size:0.85rem;" data-pkg="Maldives Private Villa Escape">Book Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Luxury -->
+      <div class="col-lg-6 reveal" data-category="luxury">
+        <div class="package-card">
+          <div class="package-img-wrap" style="height:280px;">
+            <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=80&w=2070&auto=format&fit=crop" alt="Luxury Package">
+            <span class="package-tag">Luxury</span>
+            <span class="package-duration"><i class="fa-regular fa-clock me-1"></i>8 Days / 7 Nights</span>
+          </div>
+          <div class="package-body">
+            <div class="package-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><span>5.0 (98 reviews)</span></div>
+            <h4>Swiss Alps Grand Rail Tour</h4>
+            <p class="text-gray" style="font-size:0.9rem;">First-class rail across the Alps, five-star chalets, and private Michelin dinners.</p>
+            <ul class="package-includes">
+              <li><i class="fa-solid fa-check"></i>Business Flights</li>
+              <li><i class="fa-solid fa-check"></i>5-Star Stay</li>
+              <li><i class="fa-solid fa-check"></i>Private Rail</li>
+              <li><i class="fa-solid fa-check"></i>Fine Dining</li>
+              <li><i class="fa-solid fa-check"></i>Concierge</li>
+            </ul>
+            <div class="package-footer">
+              <div class="package-price">$4,980 <small>/ person</small></div>
+              <button class="btn-coral book-now-btn" style="padding:10px 24px;font-size:0.85rem;" data-pkg="Swiss Alps Grand Rail Tour">Book Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Family -->
+      <div class="col-lg-4 col-md-6 reveal" data-category="family">
+        <div class="package-card">
+          <div class="package-img-wrap">
+            <img src="https://images.unsplash.com/photo-1602002418082-a4443e081dd1?q=80&w=1974&auto=format&fit=crop" alt="Family Package">
+            <span class="package-tag">Family</span>
+            <span class="package-duration"><i class="fa-regular fa-clock me-1"></i>7 Days</span>
+          </div>
+          <div class="package-body">
+            <div class="package-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><span>4.8 (189)</span></div>
+            <h4>Orlando Theme Park Escape</h4>
+            <ul class="package-includes">
+              <li><i class="fa-solid fa-check"></i>Flights</li>
+              <li><i class="fa-solid fa-check"></i>Family Suite</li>
+              <li><i class="fa-solid fa-check"></i>Park Passes</li>
+              <li><i class="fa-solid fa-check"></i>Kids Eat Free</li>
+            </ul>
+            <div class="package-footer">
+              <div class="package-price">$1,120 <small>/ person</small></div>
+              <button class="btn-outline-navy book-now-btn" style="padding:9px 18px;font-size:0.82rem;" data-pkg="Orlando Theme Park Escape">Book Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Adventure -->
+      <div class="col-lg-4 col-md-6 reveal" data-category="adventure">
+        <div class="package-card">
+          <div class="package-img-wrap">
+            <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2070&auto=format&fit=crop" alt="Adventure Package">
+            <span class="package-tag">Adventure</span>
+            <span class="package-duration"><i class="fa-regular fa-clock me-1"></i>9 Days</span>
+          </div>
+          <div class="package-body">
+            <div class="package-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><span>5.0 (144)</span></div>
+            <h4>Patagonia Trekking Circuit</h4>
+            <ul class="package-includes">
+              <li><i class="fa-solid fa-check"></i>Guide</li>
+              <li><i class="fa-solid fa-check"></i>Camping Gear</li>
+              <li><i class="fa-solid fa-check"></i>Permits</li>
+              <li><i class="fa-solid fa-check"></i>Meals</li>
+            </ul>
+            <div class="package-footer">
+              <div class="package-price">$1,890 <small>/ person</small></div>
+              <button class="btn-outline-navy book-now-btn" style="padding:9px 18px;font-size:0.82rem;" data-pkg="Patagonia Trekking Circuit">Book Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Solo -->
+      <div class="col-lg-4 col-md-6 reveal" data-category="solo">
+        <div class="package-card">
+          <div class="package-img-wrap">
+            <img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?q=80&w=1974&auto=format&fit=crop" alt="Solo Package">
+            <span class="package-tag">Solo Trip</span>
+            <span class="package-duration"><i class="fa-regular fa-clock me-1"></i>10 Days</span>
+          </div>
+          <div class="package-body">
+            <div class="package-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><span>4.7 (167)</span></div>
+            <h4>Vietnam Backpacker Trail</h4>
+            <ul class="package-includes">
+              <li><i class="fa-solid fa-check"></i>Hostel Stays</li>
+              <li><i class="fa-solid fa-check"></i>Group Meetups</li>
+              <li><i class="fa-solid fa-check"></i>Local SIM</li>
+              <li><i class="fa-solid fa-check"></i>Guide</li>
+            </ul>
+            <div class="package-footer">
+              <div class="package-price">$740 <small>/ person</small></div>
+              <button class="btn-outline-navy book-now-btn" style="padding:9px 18px;font-size:0.82rem;" data-pkg="Vietnam Backpacker Trail">Book Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Beach -->
+      <div class="col-lg-6 reveal" data-category="beach">
+        <div class="package-card">
+          <div class="package-img-wrap" style="height:280px;">
+            <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=1974&auto=format&fit=crop" alt="Beach Package">
+            <span class="package-tag">Beach Holiday</span>
+            <span class="package-duration"><i class="fa-regular fa-clock me-1"></i>5 Days / 4 Nights</span>
+          </div>
+          <div class="package-body">
+            <div class="package-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><span>4.9 (256 reviews)</span></div>
+            <h4>Phuket Beach Resort Getaway</h4>
+            <p class="text-gray" style="font-size:0.9rem;">Beachfront resort, snorkeling excursion, and a sunset longtail boat cruise.</p>
+            <ul class="package-includes">
+              <li><i class="fa-solid fa-check"></i>Flights</li>
+              <li><i class="fa-solid fa-check"></i>Beachfront Resort</li>
+              <li><i class="fa-solid fa-check"></i>Breakfast Daily</li>
+              <li><i class="fa-solid fa-check"></i>Snorkeling Trip</li>
+            </ul>
+            <div class="package-footer">
+              <div class="package-price">$890 <small>/ person</small></div>
+              <button class="btn-coral book-now-btn" style="padding:10px 24px;font-size:0.85rem;" data-pkg="Phuket Beach Resort Getaway">Book Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Booking Modal -->
+<div class="modal fade" id="bookModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border-radius:20px;border:none;">
+      <div class="modal-header" style="border-bottom:1px solid var(--line);">
+        <h5 class="modal-title font-display">Request to Book</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <p class="text-gray mb-3">Package: <strong id="modalPkgName" class="text-coral"></strong></p>
+        <form id="bookForm">
+          <div class="mb-3"><input type="text" class="form-control-meridian" placeholder="Full Name" required></div>
+          <div class="mb-3"><input type="email" class="form-control-meridian" placeholder="Email Address" required></div>
+          <div class="mb-3"><input type="tel" class="form-control-meridian" placeholder="Phone Number" required></div>
+          <button type="submit" class="btn-coral w-100">Send Request</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container-xl-custom">
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6">
+        <a href="index.html" class="brand-mark"><span class="brand-icon"><i class="fa-solid fa-compass"></i></span>Meridian<span class="dot">.</span></a>
+        <p>Premium, fully-guided travel to 90+ countries since 2009. We plan the trip; you just show up.</p>
+        <div class="social-icons">
+          <a href="https://facebook.com" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://instagram.com" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://twitter.com" target="_blank" rel="noopener"><i class="fa-brands fa-twitter"></i></a>
+          <a href="https://youtube.com" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <h6>Quick Links</h6>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="destinations.html">Destinations</a></li>
+          <li><a href="packages.html">Packages</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <h6>Contact</h6>
+        <ul class="footer-contact" style="list-style:none;padding:0;">
+          <li><i class="fa-solid fa-location-dot"></i>221 Harbor Ave, San Francisco, CA</li>
+          <li><i class="fa-solid fa-phone"></i>+9989796435</li>
+          <li><i class="fa-solid fa-envelope"></i>meridiantravel@gmail.com</li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <h6>Newsletter</h6>
+        <p>Fare drops and new destinations, once a month.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Your email" required>
+          <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Meridian Travel. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a></span>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top-btn" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+/* ============================================================
+   MERIDIAN TRAVEL — Core Script
+   ============================================================ */
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  /* ---------- Page loader ---------- */
+  const loader = document.querySelector('.page-loader');
+  window.addEventListener('load', function () {
+    setTimeout(() => loader && loader.classList.add('hide'), 350);
+  });
+  // fallback in case load already fired
+  setTimeout(() => loader && loader.classList.add('hide'), 2500);
+
+  /* ---------- Sticky / scrolled navbar ---------- */
+  const navbar = document.querySelector('.navbar-meridian');
+  function handleNavScroll(){
+    if(!navbar) return;
+    if(window.scrollY > 40){ navbar.classList.add('scrolled'); }
+    else { navbar.classList.remove('scrolled'); }
+  }
+  handleNavScroll();
+  window.addEventListener('scroll', handleNavScroll);
+
+  /* ---------- Mobile nav toggle ---------- */
+  const navToggleBtn = document.querySelector('.nav-toggle-btn');
+  const navLinks = document.querySelector('.nav-links');
+  const navOverlay = document.querySelector('.nav-overlay');
+  function closeNav(){
+    navLinks && navLinks.classList.remove('open');
+    navOverlay && navOverlay.classList.remove('open');
+  }
+  if(navToggleBtn){
+    navToggleBtn.addEventListener('click', function(){
+      navLinks.classList.toggle('open');
+      navOverlay.classList.toggle('open');
+    });
+  }
+  navOverlay && navOverlay.addEventListener('click', closeNav);
+  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', closeNav));
+
+  /* ---------- Highlight active nav link ---------- */
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a[href]').forEach(link => {
+    const href = link.getAttribute('href');
+    if(href === currentPage){ link.classList.add('active'); }
+  });
+
+  /* ---------- Dark / Light mode toggle ---------- */
+  const themeToggleBtns = document.querySelectorAll('.theme-toggle');
+  const root = document.documentElement;
+  const savedTheme = localStorage.getItem('meridian-theme') || 'light';
+  if(savedTheme === 'dark'){ root.setAttribute('data-theme','dark'); }
+  function updateThemeIcons(){
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    themeToggleBtns.forEach(btn => {
+      btn.innerHTML = isDark ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+    });
+  }
+  updateThemeIcons();
+  themeToggleBtns.forEach(btn => {
+    btn.addEventListener('click', function(){
+      const isDark = root.getAttribute('data-theme') === 'dark';
+      if(isDark){ root.removeAttribute('data-theme'); localStorage.setItem('meridian-theme','light'); }
+      else { root.setAttribute('data-theme','dark'); localStorage.setItem('meridian-theme','dark'); }
+      updateThemeIcons();
+    });
+  });
+
+  /* ---------- Scroll to top button ---------- */
+  const scrollTopBtn = document.querySelector('.scroll-top-btn');
+  if(scrollTopBtn){
+    window.addEventListener('scroll', function(){
+      if(window.scrollY > 500){ scrollTopBtn.classList.add('show'); }
+      else { scrollTopBtn.classList.remove('show'); }
+    });
+    scrollTopBtn.addEventListener('click', function(){
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  }
+
+  /* ---------- Scroll reveal (fade-in animation), fallback if AOS absent ---------- */
+  const revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && revealEls.length){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.15});
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+
+  /* ---------- Stats counter animation ---------- */
+  const counters = document.querySelectorAll('[data-count]');
+  if(counters.length){
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.5});
+    counters.forEach(c => counterObserver.observe(c));
+  }
+  function animateCounter(el){
+    const target = parseFloat(el.getAttribute('data-count'));
+    const suffix = el.getAttribute('data-suffix') || '';
+    const duration = 1800;
+    const start = performance.now();
+    function tick(now){
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = target * eased;
+      el.textContent = (target % 1 === 0 ? Math.floor(value) : value.toFixed(1)) + suffix;
+      if(progress < 1){ requestAnimationFrame(tick); }
+      else { el.textContent = target + suffix; }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  /* ---------- Destination / Package filtering ---------- */
+  const filterPills = document.querySelectorAll('.filter-pill');
+  const filterableItems = document.querySelectorAll('[data-category]');
+  if(filterPills.length){
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', function(){
+        filterPills.forEach(p => p.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.getAttribute('data-filter');
+        filterableItems.forEach(item => {
+          const cats = item.getAttribute('data-category');
+          const show = filter === 'all' || cats.includes(filter);
+          if(show){
+            item.style.display = '';
+            requestAnimationFrame(() => {
+              item.style.opacity = '1';
+              item.style.transform = 'translateY(0) scale(1)';
+            });
+          } else {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(10px) scale(0.96)';
+            setTimeout(() => { if(item.style.opacity === '0'){ item.style.display = 'none'; } }, 300);
+          }
+        });
+      });
+    });
+    filterableItems.forEach(item => {
+      item.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+    });
+  }
+
+  /* ---------- Search form (home) ---------- */
+  const searchForm = document.querySelector('.search-form');
+  if(searchForm){
+    searchForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      const dest = searchForm.querySelector('[name="destination"]').value;
+      const btn = searchForm.querySelector('.search-submit-btn');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        window.location.href = 'destinations.html' + (dest ? ('?search=' + encodeURIComponent(dest)) : '');
+      }, 700);
+    });
+  }
+
+  /* ---------- Contact form validation ---------- */
+  const contactForm = document.querySelector('#contactForm');
+  if(contactForm){
+    contactForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      let valid = true;
+      const name = contactForm.querySelector('#cf-name');
+      const email = contactForm.querySelector('#cf-email');
+      const subject = contactForm.querySelector('#cf-subject');
+      const message = contactForm.querySelector('#cf-message');
+      const phone = contactForm.querySelector('#cf-phone');
+
+      function validateField(field, condition){
+        if(condition){ field.classList.remove('is-invalid'); }
+        else { field.classList.add('is-invalid'); valid = false; }
+      }
+
+      validateField(name, name.value.trim().length >= 2);
+      validateField(email, /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim()));
+      validateField(subject, subject.value.trim().length >= 3);
+      validateField(message, message.value.trim().length >= 10);
+      if(phone){ validateField(phone, phone.value.trim().length >= 7); }
+
+      const successAlert = document.querySelector('.form-alert-success');
+      if(valid){
+        const btn = contactForm.querySelector('button[type="submit"]');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Sending...';
+        btn.disabled = true;
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+          contactForm.reset();
+          successAlert && successAlert.classList.add('show');
+          setTimeout(() => successAlert && successAlert.classList.remove('show'), 5000);
+        }, 900);
+      }
+    });
+
+    // live validation clear
+    contactForm.querySelectorAll('.form-control-meridian').forEach(field => {
+      field.addEventListener('input', function(){ this.classList.remove('is-invalid'); });
+    });
+  }
+
+  /* ---------- Newsletter form ---------- */
+  document.querySelectorAll('.newsletter-form').forEach(form => {
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const input = form.querySelector('input');
+      const btn = form.querySelector('button');
+      if(input.value.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim())){
+        const original = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-check"></i>';
+        input.value = '';
+        setTimeout(() => btn.innerHTML = original, 2000);
+      } else {
+        input.style.boxShadow = '0 0 0 2px #e74c3c';
+        setTimeout(() => input.style.boxShadow = '', 1200);
+      }
+    });
+  });
+
+  /* ---------- Set min date for date inputs (today) ---------- */
+  document.querySelectorAll('input[type="date"]').forEach(input => {
+    const today = new Date().toISOString().split('T')[0];
+    input.setAttribute('min', today);
+  });
+
+  /* ---------- Gallery lightbox (simple) ---------- */
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', function(){
+      const img = this.querySelector('img');
+      if(img){ window.open(img.src, '_blank'); }
+    });
+  });
+
+});
+
+</script>
+<script>
+  // Book Now modal wiring
+  document.querySelectorAll('.book-now-btn').forEach(btn => {
+    btn.addEventListener('click', function(){
+      document.getElementById('modalPkgName').textContent = this.getAttribute('data-pkg');
+      const modal = new bootstrap.Modal(document.getElementById('bookModal'));
+      modal.show();
+    });
+  });
+  document.getElementById('bookForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const btn = this.querySelector('button[type="submit"]');
+    const original = btn.innerHTML;
+    btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Sending...';
+    setTimeout(() => {
+      btn.innerHTML = '<i class="fa-solid fa-check"></i> Request Sent!';
+      setTimeout(() => {
+        bootstrap.Modal.getInstance(document.getElementById('bookModal')).hide();
+        btn.innerHTML = original;
+        this.reset();
+      }, 1200);
+    }, 900);
+  });
+</script>
+</body>
+</html>
